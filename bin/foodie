@@ -1,3 +1,16 @@
 #!/usr/bin/env ruby
-require 'foodie/cli'
-Foodie::CLI.start
+
+require 'foodie'
+require 'mercenary'
+
+Mercenary.program(:foodie) do |p|
+  p.version Foodie::VERSION
+
+  p.command(:new) do |c|
+    c.syntax 'foodie new path'
+
+    c.action do |args, options|
+      puts Foodie::Food.portray(args[0])
+    end
+  end
+end
